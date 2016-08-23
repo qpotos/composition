@@ -1,0 +1,11 @@
+mongodb:
+		build: ./mongo
+		links:
+				- nodejs:nodejs
+		ports:
+				- "27017"
+nodejs:
+		build: ./node
+		links:
+				- mongodb
+

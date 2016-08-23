@@ -1,0 +1,7 @@
+{
+	"dependencies": {
+		"express": "4.14.0",
+		"mocha": "2.2.8",
+		"mongodb": "^2.2.1"
+	}
+}
