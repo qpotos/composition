@@ -1,15 +1,14 @@
 FROM qpotos/basenode
 
-ADD package.json /tmp/package.json
+RUN npm install -g nodemon
 
-RUN npm install -g nodemon; \
-		cd /tmp; \
-		npm install; \
-		mkdir -p /src; \
-		cp -a /tmp/node_modules /src/
+ADD package.json /tmp/package.json
+RUN mkdir -p /src
 
 WORKDIR /src
 ADD . /src
+RUN npm install --save express
+RUN npm install --save redis
 
 EXPOSE 8080
 

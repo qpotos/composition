@@ -1,11 +1,35 @@
-mongodb:
-		build: ./mongo
-		links:
-				- nodejs:nodejs
-		ports:
-				- "27017"
-nodejs:
-		build: ./node
-		links:
-				- mongodb
-
+nginx:
+    build: ./nginx
+    container_name: nginx
+    links:
+        - node1:node1
+        - node2:node2
+        - node3:node3
+    ports:
+        - "80:80"
+node1:
+    build: ./node
+    container_name: node1
+    links:
+        - redis
+    ports:
+        - "8080"
+node2:
+    build: ./node
+    container_name: node2
+    links:
+        - redis
+    ports:
+        - "8080"
+node3:
+    build: ./node
+    container_name: node3
+    links:
+        - redis
+    ports:
+        - "8080"
+redis:
+    image: redis
+    container_name: redis
+    ports:
+        - "6379"
